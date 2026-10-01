@@ -1,0 +1,24 @@
+{
+  "name": "mentalguard_web",
+  "version": "1.0.0",
+  "description": "MentalGuard - Smart Stress Monitoring System - Nhom 4",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "mentalguard",
+    "esp32",
+    "iot",
+    "gemini"
+  ],
+  "author": "Nhom 4",
+  "license": "ISC",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

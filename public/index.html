@@ -1,0 +1,2085 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>MentalGuard - Nhóm 4</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f6f7f9;
+            color: #222;
+        }
+
+        header {
+            background: linear-gradient(
+                135deg,
+                #991b1b,
+                #dc2626
+            );
+
+            color: white;
+            padding: 32px 20px;
+            text-align: center;
+
+            box-shadow:
+                0 3px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        header h1 {
+            font-size: 34px;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            color: #fee2e2;
+            font-size: 15px;
+        }
+
+        .group {
+            display: inline-block;
+
+            background: white;
+            color: #b91c1c;
+
+            padding: 7px 20px;
+            margin-top: 12px;
+
+            border-radius: 20px;
+
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 25px;
+        }
+
+        .section-title {
+            color: #991b1b;
+            font-size: 19px;
+
+            margin-top: 5px;
+            margin-bottom: 14px;
+        }
+
+
+        /* =========================
+           USER
+           ========================= */
+
+        .user-box {
+            background: white;
+
+            padding: 22px;
+
+            border-radius: 12px;
+
+            margin-bottom: 22px;
+
+            border-top: 4px solid #b91c1c;
+
+            box-shadow:
+                0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .user-header {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 20px;
+        }
+
+        .user-header h2 {
+            color: #991b1b;
+            font-size: 19px;
+            margin-bottom: 4px;
+        }
+
+        .user-header p {
+            color: #777;
+            font-size: 13px;
+        }
+
+        .user-code {
+            background: #fee2e2;
+            color: #991b1b;
+
+            padding: 8px 15px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .user-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(180px, 1fr));
+
+            gap: 14px;
+        }
+
+        .user-item label {
+            display: block;
+
+            color: #666;
+
+            font-size: 13px;
+
+            margin-bottom: 7px;
+        }
+
+        .user-item input,
+        .user-item select {
+            width: 100%;
+
+            padding: 11px 12px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 8px;
+
+            outline: none;
+
+            font-size: 14px;
+
+            background: white;
+        }
+
+        .user-item input:focus,
+        .user-item select:focus {
+            border-color: #dc2626;
+        }
+
+        .user-actions {
+            margin-top: 16px;
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+        }
+
+        .button {
+            border: none;
+
+            padding: 10px 18px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            font-size: 13px;
+        }
+
+        .save-button {
+            background: #b91c1c;
+            color: white;
+        }
+
+        .save-button:hover {
+            background: #991b1b;
+        }
+
+        .edit-button {
+            background: #f3f4f6;
+            color: #444;
+        }
+
+        .edit-button:hover {
+            background: #e5e7eb;
+        }
+
+        .saved-message {
+            color: #166534;
+
+            font-size: 13px;
+
+            margin-top: 12px;
+
+            display: none;
+        }
+
+
+        /* =========================
+           DEVICE
+           ========================= */
+
+        .device-status {
+            background: white;
+
+            padding: 18px 22px;
+
+            border-radius: 12px;
+
+            margin-bottom: 25px;
+
+            border-left: 5px solid #b91c1c;
+
+            box-shadow:
+                0 2px 8px rgba(0, 0, 0, 0.08);
+
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .device-name {
+            color: #991b1b;
+            font-size: 18px;
+        }
+
+        #lastUpdate {
+            color: #777;
+
+            font-size: 13px;
+
+            margin-top: 5px;
+        }
+
+        .status {
+            font-weight: bold;
+
+            padding: 8px 15px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+        }
+
+        .online {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .offline {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+
+        /* =========================
+           SENSOR
+           ========================= */
+
+        .grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 18px;
+        }
+
+        .card {
+            background: white;
+
+            padding: 22px;
+
+            border-radius: 12px;
+
+            border-top: 4px solid #dc2626;
+
+            box-shadow:
+                0 2px 8px rgba(0, 0, 0, 0.08);
+
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 5px 15px rgba(185, 28, 28, 0.15);
+        }
+
+        .card h3 {
+            color: #6b7280;
+
+            font-size: 15px;
+
+            margin-bottom: 12px;
+        }
+
+        .value {
+            color: #991b1b;
+
+            font-size: 30px;
+
+            font-weight: bold;
+        }
+
+        .unit {
+            color: #777;
+
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           STRESS
+           ========================= */
+
+        .stress-box {
+            margin-top: 22px;
+
+            background: linear-gradient(
+                135deg,
+                #991b1b,
+                #dc2626
+            );
+
+            color: white;
+
+            border-radius: 12px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 3px 12px rgba(185, 28, 28, 0.25);
+        }
+
+        .stress-header {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stress-box h3 {
+            color: #fee2e2;
+            font-size: 15px;
+        }
+
+        .stress-label {
+            background: rgba(255, 255, 255, 0.15);
+
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+        }
+
+        .stress-value {
+            font-size: 48px;
+
+            font-weight: bold;
+
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        #stressText {
+            color: #fee2e2;
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           INFORMATION
+           ========================= */
+
+        .notice {
+            background: white;
+
+            margin-top: 22px;
+
+            padding: 18px;
+
+            border-radius: 12px;
+
+            border-left: 4px solid #dc2626;
+
+            box-shadow:
+                0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .notice h3 {
+            color: #991b1b;
+
+            font-size: 15px;
+
+            margin-bottom: 7px;
+        }
+
+        .notice p {
+            color: #666;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           FOOTER
+           ========================= */
+
+        .footer {
+            text-align: center;
+
+            color: #777;
+
+            margin-top: 30px;
+
+            padding: 20px 0;
+
+            font-size: 13px;
+
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .footer strong {
+            color: #b91c1c;
+        }
+
+
+        /* =========================
+           MOBILE
+           ========================= */
+
+        @media (max-width: 600px) {
+
+            header h1 {
+                font-size: 27px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .user-header {
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .device-status {
+                gap: 15px;
+            }
+
+            .value {
+                font-size: 26px;
+            }
+
+            .stress-value {
+                font-size: 40px;
+            }
+        }
+
+
+        /* =========================
+           AI CHAT
+           ========================= */
+
+        .ai-box {
+            margin-top: 22px;
+            background: white;
+            border-radius: 12px;
+            border-top: 4px solid #b91c1c;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .ai-header {
+            padding: 18px 22px;
+            background: #fff7f7;
+            border-bottom: 1px solid #fee2e2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .ai-header h2 {
+            color: #991b1b;
+            font-size: 19px;
+            margin-bottom: 4px;
+        }
+
+        .ai-header p {
+            color: #777;
+            font-size: 13px;
+        }
+
+        .ai-badge {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .chat-messages {
+            height: 330px;
+            overflow-y: auto;
+            padding: 20px;
+            background: #fafafa;
+        }
+
+        .chat-row {
+            display: flex;
+            margin-bottom: 14px;
+        }
+
+        .chat-row.user {
+            justify-content: flex-end;
+        }
+
+        .chat-row.ai {
+            justify-content: flex-start;
+        }
+
+        .chat-bubble {
+            max-width: 78%;
+            padding: 12px 14px;
+            border-radius: 14px;
+            font-size: 14px;
+            line-height: 1.55;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .chat-row.user .chat-bubble {
+            background: #b91c1c;
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-row.ai .chat-bubble {
+            background: white;
+            color: #333;
+            border: 1px solid #e5e7eb;
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-name {
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            opacity: 0.75;
+        }
+
+        .speak-button {
+            margin-top: 8px;
+            border: none;
+            background: #fee2e2;
+            color: #991b1b;
+            border-radius: 7px;
+            padding: 6px 10px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .speak-button:hover {
+            background: #fecaca;
+        }
+
+        .chat-input-area {
+            display: flex;
+            gap: 10px;
+            padding: 16px 20px;
+            border-top: 1px solid #e5e7eb;
+            background: white;
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            min-width: 0;
+            border: 1px solid #ddd;
+            border-radius: 9px;
+            padding: 12px 14px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .chat-input-area input:focus {
+            border-color: #dc2626;
+        }
+
+        .send-button {
+            border: none;
+            background: #b91c1c;
+            color: white;
+            padding: 0 20px;
+            border-radius: 9px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .send-button:hover {
+            background: #991b1b;
+        }
+
+        .send-button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .ai-note {
+            padding: 0 20px 16px;
+            color: #777;
+            font-size: 12px;
+            background: white;
+        }
+
+        @media (max-width: 600px) {
+            .ai-header {
+                align-items: flex-start;
+            }
+
+            .chat-messages {
+                height: 300px;
+                padding: 14px;
+            }
+
+            .chat-bubble {
+                max-width: 90%;
+            }
+
+            .chat-input-area {
+                padding: 12px;
+            }
+
+            .send-button {
+                padding: 0 14px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <h1>
+            MENTALGUARD
+        </h1>
+
+        <p>
+            Smart Stress Monitoring System
+        </p>
+
+        <div class="group">
+            NHÓM 4
+        </div>
+
+    </header>
+
+
+
+    <div class="container">
+
+
+        <!-- USER -->
+
+        <div class="user-box">
+
+            <div class="user-header">
+
+                <div>
+
+                    <h2>
+                        Thông tin người dùng
+                    </h2>
+
+                    <p>
+                        Nhập thông tin người đang sử dụng thiết bị
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="user-code"
+                    id="userCodeDisplay"
+                >
+                    CHƯA CÓ HỒ SƠ
+                </div>
+
+            </div>
+
+
+            <div class="user-grid">
+
+
+                <div class="user-item">
+
+                    <label for="fullName">
+                        Họ và tên
+                    </label>
+
+                    <input
+                        type="text"
+                        id="fullName"
+                        placeholder="Nhập họ và tên"
+                    >
+
+                </div>
+
+
+                <div class="user-item">
+
+                    <label for="age">
+                        Tuổi
+                    </label>
+
+                    <input
+                        type="number"
+                        id="age"
+                        min="1"
+                        max="120"
+                        placeholder="Nhập tuổi"
+                    >
+
+                </div>
+
+
+                <div class="user-item">
+
+                    <label for="gender">
+                        Giới tính
+                    </label>
+
+                    <select id="gender">
+
+                        <option value="">
+                            Chọn giới tính
+                        </option>
+
+                        <option value="Nam">
+                            Nam
+                        </option>
+
+                        <option value="Nữ">
+                            Nữ
+                        </option>
+
+                        <option value="Khác">
+                            Khác
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="user-item">
+
+                    <label for="userId">
+                        Mã người dùng
+                    </label>
+
+                    <input
+                        type="text"
+                        id="userId"
+                        placeholder="Ví dụ: MG01"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+            <div
+                class="saved-message"
+                id="savedMessage"
+            >
+                Đã lưu thông tin người dùng.
+            </div>
+
+
+            <div class="user-actions">
+
+                <button
+                    class="button edit-button"
+                    onclick="editUser()"
+                >
+                    Chỉnh sửa
+                </button>
+
+
+                <button
+                    class="button save-button"
+                    onclick="saveUser()"
+                >
+                    Lưu thông tin
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DEVICE -->
+
+        <h2 class="section-title">
+            Trạng thái thiết bị
+        </h2>
+
+
+        <div class="device-status">
+
+            <div>
+
+                <strong class="device-name">
+                    ESP32-C3
+                </strong>
+
+                <div id="lastUpdate">
+                    Chưa nhận dữ liệu
+                </div>
+
+            </div>
+
+
+            <div
+                id="status"
+                class="status offline"
+            >
+                OFFLINE
+            </div>
+
+        </div>
+
+
+
+        <!-- SENSOR -->
+
+        <h2 class="section-title">
+            Dữ liệu sức khỏe
+        </h2>
+
+
+        <div class="grid">
+
+
+            <div class="card">
+
+                <h3>
+                    Nhiệt độ da
+                </h3>
+
+                <span
+                    id="temperature"
+                    class="value"
+                >
+                    --
+                </span>
+
+                <span class="unit">
+                    °C
+                </span>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+                    Nhịp tim
+                </h3>
+
+                <span
+                    id="heartRate"
+                    class="value"
+                >
+                    --
+                </span>
+
+                <span class="unit">
+                    BPM
+                </span>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+                    MAX30102 IR
+                </h3>
+
+                <div
+                    id="ir"
+                    class="value"
+                >
+                    --
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+                    MAX30102 RED
+                </h3>
+
+                <div
+                    id="red"
+                    class="value"
+                >
+                    --
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+                    Mức độ vận động
+                </h3>
+
+                <div
+                    id="activity"
+                    class="value"
+                >
+                    --
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+                    Khoảng cách
+                </h3>
+
+                <span
+                    id="distance"
+                    class="value"
+                >
+                    --
+                </span>
+
+                <span class="unit">
+                    mm
+                </span>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+                    Trạng thái đeo
+                </h3>
+
+                <div
+                    id="wearing"
+                    class="value"
+                >
+                    --
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+                    Wi-Fi RSSI
+                </h3>
+
+                <span
+                    id="wifiRssi"
+                    class="value"
+                >
+                    --
+                </span>
+
+                <span class="unit">
+                    dBm
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- STRESS -->
+
+        <div class="stress-box">
+
+            <div class="stress-header">
+
+                <h3>
+                    STRESS SCORE
+                </h3>
+
+                <div class="stress-label">
+                    MentalGuard Analysis
+                </div>
+
+            </div>
+
+
+            <div
+                id="stressScore"
+                class="stress-value"
+            >
+                --
+            </div>
+
+
+            <p id="stressText">
+                Đang chờ dữ liệu...
+            </p>
+
+        </div>
+
+
+
+
+        <!-- AI CHAT -->
+
+        <div class="ai-box">
+
+            <div class="ai-header">
+
+                <div>
+                    <h2>
+                        ❤️ Tâm sự cùng AI
+                    </h2>
+
+                    <p>
+                        MentalGuard AI luôn sẵn sàng lắng nghe bạn
+                    </p>
+                </div>
+
+                <div class="ai-badge">
+                    GEMINI AI
+                </div>
+
+            </div>
+
+
+            <div
+                class="chat-messages"
+                id="chatMessages"
+            >
+
+                <div class="chat-row ai">
+
+                    <div class="chat-bubble">
+
+                        <div class="chat-name">
+                            MentalGuard AI
+                        </div>
+
+                        Xin chào! Mình là MentalGuard AI. Nếu hôm nay bạn có điều gì muốn chia sẻ, mình đang ở đây để lắng nghe.
+
+                        <br>
+
+                        <button
+                            class="speak-button"
+                            onclick="speakText('Xin chào! Mình là MentalGuard AI. Nếu hôm nay bạn có điều gì muốn chia sẻ, mình đang ở đây để lắng nghe.')"
+                        >
+                            🔊 Nghe
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="chat-input-area">
+
+                <input
+                    type="text"
+                    id="chatInput"
+                    placeholder="Nhập điều bạn muốn chia sẻ..."
+                    autocomplete="off"
+                >
+
+                <button
+                    class="send-button"
+                    id="sendButton"
+                    onclick="sendChat()"
+                >
+                    Gửi
+                </button>
+
+            </div>
+
+
+            <div class="ai-note">
+                AI chỉ hỗ trợ trò chuyện và tham khảo, không thay thế tư vấn y tế chuyên môn.
+            </div>
+
+        </div>
+
+
+        <!-- NOTICE -->
+
+        <div class="notice">
+
+            <h3>
+                Thông tin hệ thống
+            </h3>
+
+            <p>
+                MentalGuard sử dụng dữ liệu từ thiết bị ESP32-C3
+                và các cảm biến để theo dõi các thông số liên quan
+                đến trạng thái của người dùng.
+                Kết quả hiển thị chỉ phục vụ mục đích
+                nghiên cứu và thử nghiệm.
+            </p>
+
+        </div>
+
+
+
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+            <strong>
+                MentalGuard - Nhóm 4
+            </strong>
+
+            <br><br>
+
+            Smart Stress Monitoring System
+
+            <br>
+
+            Dữ liệu chỉ phục vụ mục đích nghiên cứu và thử nghiệm.
+
+        </div>
+
+
+    </div>
+
+
+
+    <script>
+
+
+        /* =========================
+           USER INFORMATION
+           ========================= */
+
+        function saveUser()
+        {
+            const fullName =
+                document.getElementById(
+                    "fullName"
+                ).value.trim();
+
+
+            const age =
+                document.getElementById(
+                    "age"
+                ).value;
+
+
+            const gender =
+                document.getElementById(
+                    "gender"
+                ).value;
+
+
+            const userId =
+                document.getElementById(
+                    "userId"
+                ).value.trim();
+
+
+            if (fullName === "")
+            {
+                alert(
+                    "Vui lòng nhập họ và tên."
+                );
+
+                return;
+            }
+
+
+            if (age === "")
+            {
+                alert(
+                    "Vui lòng nhập tuổi."
+                );
+
+                return;
+            }
+
+
+            if (gender === "")
+            {
+                alert(
+                    "Vui lòng chọn giới tính."
+                );
+
+                return;
+            }
+
+
+            if (userId === "")
+            {
+                alert(
+                    "Vui lòng nhập mã người dùng."
+                );
+
+                return;
+            }
+
+
+            const user = {
+                fullName: fullName,
+                age: age,
+                gender: gender,
+                userId: userId
+            };
+
+
+            localStorage.setItem(
+                "mentalguardUser",
+                JSON.stringify(user)
+            );
+
+
+            document.getElementById(
+                "userCodeDisplay"
+            ).textContent =
+                userId;
+
+
+            setUserInputsDisabled(
+                true
+            );
+
+
+            const message =
+                document.getElementById(
+                    "savedMessage"
+                );
+
+
+            message.style.display =
+                "block";
+
+
+            setTimeout(
+                function()
+                {
+                    message.style.display =
+                        "none";
+                },
+                2500
+            );
+        }
+
+
+
+        function loadUser()
+        {
+            const saved =
+                localStorage.getItem(
+                    "mentalguardUser"
+                );
+
+
+            if (!saved)
+            {
+                return;
+            }
+
+
+            try
+            {
+                const user =
+                    JSON.parse(saved);
+
+
+                document.getElementById(
+                    "fullName"
+                ).value =
+                    user.fullName || "";
+
+
+                document.getElementById(
+                    "age"
+                ).value =
+                    user.age || "";
+
+
+                document.getElementById(
+                    "gender"
+                ).value =
+                    user.gender || "";
+
+
+                document.getElementById(
+                    "userId"
+                ).value =
+                    user.userId || "";
+
+
+                document.getElementById(
+                    "userCodeDisplay"
+                ).textContent =
+                    user.userId ||
+                    "CHƯA CÓ HỒ SƠ";
+
+
+                setUserInputsDisabled(
+                    true
+                );
+            }
+
+            catch (error)
+            {
+                console.log(
+                    "Khong the doc thong tin nguoi dung"
+                );
+            }
+        }
+
+
+
+        function editUser()
+        {
+            setUserInputsDisabled(
+                false
+            );
+
+
+            document.getElementById(
+                "fullName"
+            ).focus();
+        }
+
+
+
+        function setUserInputsDisabled(disabled)
+        {
+            document.getElementById(
+                "fullName"
+            ).disabled =
+                disabled;
+
+
+            document.getElementById(
+                "age"
+            ).disabled =
+                disabled;
+
+
+            document.getElementById(
+                "gender"
+            ).disabled =
+                disabled;
+
+
+            document.getElementById(
+                "userId"
+            ).disabled =
+                disabled;
+        }
+
+
+
+        /* =========================
+           SENSOR VALUE
+           ========================= */
+
+        function setValue(id, value)
+        {
+            const element =
+                document.getElementById(id);
+
+
+            if (
+                value === undefined ||
+                value === null
+            )
+            {
+                element.textContent =
+                    "--";
+            }
+
+            else
+            {
+                element.textContent =
+                    value;
+            }
+        }
+
+
+
+        /* =========================
+           STRESS
+           ========================= */
+
+        function updateStress(score)
+        {
+            const stressScore =
+                document.getElementById(
+                    "stressScore"
+                );
+
+
+            const stressText =
+                document.getElementById(
+                    "stressText"
+                );
+
+
+            if (
+                score === undefined ||
+                score === null
+            )
+            {
+                stressScore.textContent =
+                    "--";
+
+
+                stressText.textContent =
+                    "Đang chờ dữ liệu...";
+
+
+                return;
+            }
+
+
+            stressScore.textContent =
+                score;
+
+
+            if (score < 30)
+            {
+                stressText.textContent =
+                    "Trạng thái ổn định";
+            }
+
+            else if (score < 60)
+            {
+                stressText.textContent =
+                    "Có dấu hiệu căng thẳng nhẹ";
+            }
+
+            else
+            {
+                stressText.textContent =
+                    "Mức căng thẳng cao";
+            }
+        }
+
+
+
+        /* =========================
+           LOAD ESP32 DATA
+           ========================= */
+
+        async function loadData()
+        {
+            try
+            {
+                const response =
+                    await fetch(
+                        "/api/data/latest"
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                const status =
+                    document.getElementById(
+                        "status"
+                    );
+
+
+                if (result.online)
+                {
+                    status.textContent =
+                        "ONLINE";
+
+
+                    status.className =
+                        "status online";
+                }
+
+                else
+                {
+                    status.textContent =
+                        "OFFLINE";
+
+
+                    status.className =
+                        "status offline";
+                }
+
+
+                if (!result.data)
+                {
+                    return;
+                }
+
+
+                const data =
+                    result.data;
+
+
+                setValue(
+                    "temperature",
+                    data.temperature
+                );
+
+
+                setValue(
+                    "heartRate",
+                    data.heartRate
+                );
+
+
+                setValue(
+                    "ir",
+                    data.ir
+                );
+
+
+                setValue(
+                    "red",
+                    data.red
+                );
+
+
+                setValue(
+                    "activity",
+                    data.activity
+                );
+
+
+                setValue(
+                    "distance",
+                    data.distance
+                );
+
+
+                setValue(
+                    "wifiRssi",
+                    data.wifiRssi
+                );
+
+
+                if (
+                    data.wearing === true
+                )
+                {
+                    setValue(
+                        "wearing",
+                        "ĐANG ĐEO"
+                    );
+                }
+
+                else if (
+                    data.wearing === false
+                )
+                {
+                    setValue(
+                        "wearing",
+                        "KHÔNG ĐEO"
+                    );
+                }
+
+                else
+                {
+                    setValue(
+                        "wearing",
+                        "--"
+                    );
+                }
+
+
+                updateStress(
+                    data.stressScore
+                );
+
+
+                if (result.lastUpdate)
+                {
+                    const time =
+                        new Date(
+                            result.lastUpdate
+                        );
+
+
+                    document.getElementById(
+                        "lastUpdate"
+                    ).textContent =
+                        "Cập nhật: " +
+                        time.toLocaleTimeString(
+                            "vi-VN"
+                        );
+                }
+            }
+
+            catch (error)
+            {
+                console.log(error);
+
+
+                const status =
+                    document.getElementById(
+                        "status"
+                    );
+
+
+                status.textContent =
+                    "SERVER ERROR";
+
+
+                status.className =
+                    "status offline";
+            }
+        }
+
+
+
+
+        /* =========================
+           AI CHAT
+           ========================= */
+
+        function getCurrentUserName()
+        {
+            const fullNameInput =
+                document.getElementById(
+                    "fullName"
+                );
+
+            if (
+                fullNameInput &&
+                fullNameInput.value.trim() !== ""
+            )
+            {
+                return fullNameInput.value.trim();
+            }
+
+
+            const saved =
+                localStorage.getItem(
+                    "mentalguardUser"
+                );
+
+
+            if (saved)
+            {
+                try
+                {
+                    const user =
+                        JSON.parse(saved);
+
+                    if (
+                        user.fullName &&
+                        user.fullName.trim() !== ""
+                    )
+                    {
+                        return user.fullName.trim();
+                    }
+                }
+
+                catch (error)
+                {
+                    console.log(
+                        "Khong the doc ten nguoi dung"
+                    );
+                }
+            }
+
+
+            return "bạn";
+        }
+
+
+        function addChatMessage(
+            sender,
+            text,
+            allowSpeech
+        )
+        {
+            const chatMessages =
+                document.getElementById(
+                    "chatMessages"
+                );
+
+
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+
+            row.className =
+                "chat-row " + sender;
+
+
+            const bubble =
+                document.createElement(
+                    "div"
+                );
+
+
+            bubble.className =
+                "chat-bubble";
+
+
+            const name =
+                document.createElement(
+                    "div"
+                );
+
+
+            name.className =
+                "chat-name";
+
+
+            if (sender === "user")
+            {
+                name.textContent =
+                    getCurrentUserName();
+            }
+
+            else
+            {
+                name.textContent =
+                    "MentalGuard AI";
+            }
+
+
+            const content =
+                document.createElement(
+                    "div"
+                );
+
+
+            content.textContent =
+                text;
+
+
+            bubble.appendChild(
+                name
+            );
+
+
+            bubble.appendChild(
+                content
+            );
+
+
+            if (allowSpeech)
+            {
+                const speakButton =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                speakButton.className =
+                    "speak-button";
+
+
+                speakButton.textContent =
+                    "🔊 Nghe";
+
+
+                speakButton.onclick =
+                    function()
+                    {
+                        speakText(text);
+                    };
+
+
+                bubble.appendChild(
+                    speakButton
+                );
+            }
+
+
+            row.appendChild(
+                bubble
+            );
+
+
+            chatMessages.appendChild(
+                row
+            );
+
+
+            chatMessages.scrollTop =
+                chatMessages.scrollHeight;
+
+
+            return row;
+        }
+
+
+        async function sendChat()
+        {
+            const input =
+                document.getElementById(
+                    "chatInput"
+                );
+
+
+            const sendButton =
+                document.getElementById(
+                    "sendButton"
+                );
+
+
+            const message =
+                input.value.trim();
+
+
+            if (message === "")
+            {
+                return;
+            }
+
+
+            addChatMessage(
+                "user",
+                message,
+                false
+            );
+
+
+            input.value = "";
+
+
+            sendButton.disabled =
+                true;
+
+
+            const loadingRow =
+                addChatMessage(
+                    "ai",
+                    "MentalGuard AI đang trả lời...",
+                    false
+                );
+
+
+            try
+            {
+                const response =
+                    await fetch(
+                        "/api/chat",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+                                message: message,
+                                userName:
+                                    getCurrentUserName()
+                            })
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                loadingRow.remove();
+
+
+                if (!response.ok)
+                {
+                    addChatMessage(
+                        "ai",
+                        result.message ||
+                        "AI hiện chưa thể trả lời. Vui lòng thử lại.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                addChatMessage(
+                    "ai",
+                    result.reply,
+                    true
+                );
+            }
+
+            catch (error)
+            {
+                loadingRow.remove();
+
+
+                addChatMessage(
+                    "ai",
+                    "Không thể kết nối với AI. Hãy kiểm tra server và thử lại.",
+                    false
+                );
+
+
+                console.log(error);
+            }
+
+            finally
+            {
+                sendButton.disabled =
+                    false;
+
+
+                input.focus();
+            }
+        }
+
+
+        function speakText(text)
+        {
+            if (
+                !("speechSynthesis" in window)
+            )
+            {
+                alert(
+                    "Trình duyệt này không hỗ trợ đọc giọng nói."
+                );
+
+                return;
+            }
+
+
+            window.speechSynthesis.cancel();
+
+
+            const utterance =
+                new SpeechSynthesisUtterance(
+                    text
+                );
+
+
+            utterance.lang =
+                "vi-VN";
+
+
+            utterance.rate =
+                1;
+
+
+            utterance.pitch =
+                1;
+
+
+            const voices =
+                window.speechSynthesis.getVoices();
+
+
+            const vietnameseVoice =
+                voices.find(
+                    function(voice)
+                    {
+                        return voice.lang
+                            .toLowerCase()
+                            .startsWith("vi");
+                    }
+                );
+
+
+            if (vietnameseVoice)
+            {
+                utterance.voice =
+                    vietnameseVoice;
+            }
+
+
+            window.speechSynthesis.speak(
+                utterance
+            );
+        }
+
+
+        document.getElementById(
+            "chatInput"
+        ).addEventListener(
+            "keydown",
+            function(event)
+            {
+                if (event.key === "Enter")
+                {
+                    event.preventDefault();
+
+                    sendChat();
+                }
+            }
+        );
+
+
+
+        /* =========================
+           START
+           ========================= */
+
+        loadUser();
+
+        loadData();
+
+
+        setInterval(
+            loadData,
+            1000
+        );
+
+
+    </script>
+
+</body>
+
+</html>
